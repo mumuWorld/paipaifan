@@ -6,10 +6,17 @@
 //  Copyright © 2016年 YangJie. All rights reserved.
 //
 
+<<<<<<< HEAD
 #import "CustomNavigationBar.h"
 #import "Common.h"
 
 @implementation CustomNavigationBar
+=======
+#import "customNavigationBar.h"
+#import "Common.h"
+
+@implementation customNavigationBar
+>>>>>>> f35b76ef73f773a37619b0b2ff6d778138abfabf
 /**
  *  添加自定义 TabBar 的 title
  *
@@ -19,7 +26,11 @@
 - (void)addTitleLabelWithFrame:(CGRect)frame_view title:(NSString *)title {
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, width(frame_view) - 40 * 2, 44)];
     _titleLabel.text = title;
+<<<<<<< HEAD
     _titleLabel.textColor = WHITE_COLOR;
+=======
+    _titleLabel.textColor = CUSTOMTABBAR_TITLR_COLOR;
+>>>>>>> f35b76ef73f773a37619b0b2ff6d778138abfabf
     _titleLabel.font = CUSTOMTABBAR_TITLE_FONT;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_titleLabel];
@@ -69,6 +80,7 @@
  */
 - (void)addLeftButtonWithFrame:(CGRect)frame_view image:(UIImage *)image title:(NSString *)title leftBtnTitleColor:(UIColor *)leftBtnTitleColor leftBlock:(ItemBlock)leftBlock {
     __weak typeof(self) weakSelf = self;
+<<<<<<< HEAD
     CGSize tempLeftLabelTitleSize = [[Common commonShareInstance] sizeWithString:title font:TextFont maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     _leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 34, tempLeftLabelTitleSize.width, 18)];
     _leftLabel.text = title;
@@ -79,6 +91,16 @@
     [_leftBtn setBackgroundImage:image forState:UIControlStateNormal];
     
     _clearView_LEFT = [[UIView alloc] initWithFrame:CGRectMake(0, 22, 30 + tempLeftLabelTitleSize.width, 40)];
+=======
+    _leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(12, 34, 18, 18)];
+    [_leftBtn setBackgroundImage:image forState:UIControlStateNormal];
+    CGSize tempLeftBtnTitleSize = [[Common commonShareInstance] sizeWithString:title font:TextFont maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    _leftLabel = [[UILabel alloc] initWithFrame:CGRectMake((image) ? maxX(_leftBtn) : 12, minY(_leftBtn), tempLeftBtnTitleSize.width, height(_leftBtn.frame))];
+    _leftLabel.text = title;
+    _leftLabel.adjustsFontSizeToFitWidth = YES;
+    _leftLabel.textColor = leftBtnTitleColor;
+    _clearView_LEFT = [[UIView alloc] initWithFrame:CGRectMake(0, 22, 30 + tempLeftBtnTitleSize.width, 40)];
+>>>>>>> f35b76ef73f773a37619b0b2ff6d778138abfabf
     _clearView_LEFT.backgroundColor = [UIColor clearColor];
     _clearView_LEFT.userInteractionEnabled = YES;
     
