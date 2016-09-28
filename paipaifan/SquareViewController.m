@@ -12,6 +12,8 @@
 #import "SquareInfo.h"
 #import "SquareCellFrame.h"
 #import "MyNavigationBar.h"
+#import "AppDelegate.h"
+#import "CustomNavigationBar.h"
 
 @interface SquareViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,weak) UITableView *mainTableView;
@@ -21,6 +23,8 @@
 @property (nonatomic,assign) CGRect navRect;
 
 @property (weak, nonatomic)  UIView *statusBarView;
+
+@property (nonatomic,strong) CustomNavigationBar *customNavigationBar;
 
 @end
 
@@ -46,13 +50,21 @@
     self.navigationItem.title = @"大家都在吃什么";
     self.view.backgroundColor=[UIColor whiteColor];
     [self addMainTableView];
-   
-//    [self.view addSubview:view];
-     CGRect rect = self.navigationController.navigationBar.bounds;
-//    MyNSLog(@"rect = %@",rect);
-    MyNavigationBar *navBar = [[MyNavigationBar alloc] init];
-    navBar.frame = rect;
-    [self.navigationController.navigationBar addSubview:navBar];
+    self.customNavigationBar = [[CustomNavigationBar alloc] initWithFrame:CGRectMake(ZERO, ZERO, SCREEN_WIDTH, CUSTOMNAVBAR_HEIGHT)
+                                                                    title:@"大家都在吃什么"
+                                                                  bgColor:CommonColor
+                                                             leftBtnImage:[UIImage imageNamed:@"nav_ic_back_white"]
+                                                             leftBtnTitle:@"上海"
+                                                        leftBtnTitleColor:WHITE_COLOR
+                                                           reigthBtnTitle:@"预留"
+                                                      reightBtnTitleColor:WHITE_COLOR
+                                                           reightBtnImage:[UIImage imageNamed:@"nav_ic_notice"]
+                                                                leftBlock:^{
+                                                                    NSLog(@"左边点击！ Block的回调");
+                                                                } reightBlock:^{
+                                                                    NSLog(@"右边点击！ Block的回调");
+                                                                }];
+    [self.view addSubview:_customNavigationBar];
     
 //    UIBarButtonItem *leftBarItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageWithContentsOfFile:imgPathLeft] title:@"上海" target:self action:@selector(returnVIew)];
 //   UIButton *bu = [[UIButton alloc] init];
@@ -62,10 +74,11 @@
     
     // Do any additional setup after loading the view.
 }
+
 - (void)addMainTableView {
     
-    CGFloat tableH = SCREEN_HEIGHT - TABBAR_HEIGHT;
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, tableH)];
+    CGFloat tableH = SCREEN_HEIGHT - CUSTOMNAVBAR_HEIGHT- TABBAR_HEIGHT;
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,CUSTOMNAVBAR_HEIGHT, SCREEN_WIDTH, tableH)];
     tableView.delegate = self;
     tableView.dataSource = self;
     self.mainTableView = tableView;
@@ -104,7 +117,7 @@
     SquareTableViewCell *cell = [SquareTableViewCell cellWithTableView:tableView];
     
     cell.squareCellFrame = self.showInfoArray[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     return cell;
 }
 #pragma mark ------------------- tableView delegate method
@@ -114,7 +127,20 @@
     MyNSLog(@"height = %f",squareCellFrame.cellHeight);
     return squareCellFrame.cellHeight;
 }
-
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MyNSLog(@"tableview -------------------");
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    UIWindow *window = app.window;
+    
+    [UIView animateWithDuration:1.0f animations:^{
+        window.alpha = 0;
+        window.frame = CGRectMake(0, window.bounds.size.width, 0, 0);
+    } completion:^(BOOL finished) {
+        exit(0);
+    }];
+    //exit(0);
+}
 /**
  *  设置tableview的分割线
  */

@@ -9,7 +9,6 @@
 #import "MainTabBarViewController.h"
 #import "MainTabBarItem.h"
 #import "MainTabBarView.h"
-#import "HomeViewController.h"
 #import "NearbyViewController.h"
 #import "FoodCircleViewController.h"
 #import "PersonViewController.h"

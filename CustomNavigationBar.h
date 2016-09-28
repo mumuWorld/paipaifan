@@ -12,8 +12,8 @@
 typedef void(^ItemBlock)(void);
 
 
-@interface customNavigationBar : UIView
-- (void)addBottomLineLabelWithFrame:(CGRect)frame color:(UIColor *)mycolor;
+@interface CustomNavigationBar : UIView
+//- (void)addBottomLineLabelWithFrame:(CGRect)frame color:(UIColor *)mycolor;
 /**
  *  CustomTabBar bottomLineLabel
  */

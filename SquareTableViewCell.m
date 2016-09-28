@@ -44,7 +44,7 @@
 }
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
-    MyNSLog(@"%s",__func__);
+//    MyNSLog(@"%s",__func__);
     static NSString *identifier = @"square";
     
     SquareTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];

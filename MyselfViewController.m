@@ -95,10 +95,8 @@
     lable.font = [UIFont systemFontOfSize:14];
     _userName = lable;
     [_headBackground addSubview:_userName];
-//    [_headBackground setImage:_headButton.currentBackgroundImage];
-    _headBackground.alpha = 0.8;
-//    [self makeAsyncSetHeadviewImage:_headButton.currentBackgroundImage];
-    //直接放到主线程中去。
+    
+    //直接放到主线程中去。大概有0.5秒的处理时间，但是感觉应该没问题。
      UIImage * blurImage = [self applyGaussianBlur:_headButton.currentBackgroundImage];
      [_headBackground setImage:blurImage];
     //设置状态栏显示。整个scroll 的frame

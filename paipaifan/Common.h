@@ -19,6 +19,7 @@
 #define NAV_ITEM_HEIGHT 44.00
 #define NAV_ITEM_WEIGHT 60.00
 
+
 #define TABBAR_HEIGHT 44.00
 #define NAV_HEIGHT 44.00
 #define STATUS_BAR 20.00
@@ -32,7 +33,8 @@
 //用户名称高度
 #define USER_NAME_HEIGHT 20.00
 #define USER_NAME_WIDTH 
-
+//0
+#define ZERO 0
 //间隙
 #define PADDING 10.00
 
@@ -41,9 +43,14 @@
 #define TextFont [UIFont systemFontOfSize:16]
 //tableview 最大滚动距离
 #define MAX_ScroolHeight -SCREEN_HEIGHT*0.17
-//customtabbar 字体颜色
-#define CUSTOMTABBAR_TITLR_COLOR [UIColor whiteColor]
+
+//customtabbar
+#define CUSTOMNAVBAR_HEIGHT 64.00
+#define WHITE_COLOR [UIColor whiteColor]
 #define CUSTOMTABBAR_TITLE_FONT [UIFont boldSystemFontOfSize:16]
+
+
++ (instancetype)commonShareInstance;
 
 
 - (CGSize)sizeWithString:(NSString *)str font:(UIFont *)font maxSize:(CGSize)maxSize;

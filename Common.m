@@ -10,7 +10,20 @@
 
 
 @implementation Common
-
+/**
+ *  单例
+ *
+ *  @return common
+ */
++ (instancetype)commonShareInstance
+{
+    static Common *common = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        common = [[self alloc] init];
+    });
+    return common;
+}
 /**
  *  计算文本的宽高
  *
